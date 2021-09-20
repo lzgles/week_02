@@ -1,0 +1,102 @@
+---
+title: "Week 02 Assignment"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+This assignment is due by 6 pm on the evening of the 3rd class. It should be submitted via Github.
+
+#### Textbook
+
+-   Review from this past week:
+    -   [Chapter 7 - Exploratory Data Analysis](https://r4ds.had.co.nz/exploratory-data-analysis.html)
+    -   [Chapter 11 - Data Import](https://r4ds.had.co.nz/data-import.html)
+    
+- Prepare for next week:
+    -   [Chapter 5 - Data transformation](https://r4ds.had.co.nz/transform.html)
+    -   [Chapter 8 - Workflow: projects](https://r4ds.had.co.nz/workflow-projects.html)
+    -   [Chapter 9 - Wrangle Introduction](https://r4ds.had.co.nz/wrangle-intro.html)
+    -   [Chapter 10 - Tibbles](https://r4ds.had.co.nz/tibbles.html)
+
+#### Additional Readings
+
+-   [*Happy Git and GitHub for the useR*](https://happygitwithr.com/)
+
+    -   Chapters 15-19
+
+#### Supplemental Readings
+
+*Note: these are not required, but may be helpful for you to better understand the work.*
+
+-   [A layered grammar of graphics](https://vita.had.co.nz/papers/layered-grammar.html)
+
+#### Exercises
+
+1.  Install the `nycflights13` package and load it into the namespace of your R session. Also, load the `tidyverse` package into the namespace of your R session. Attach the `airlines`, `airports`, `flights`, `weather`, and `planes` datasets
+
+```{r}
+
+```
+
+2.  We'll begin by exploring the `flights` dataset. Determine the following information about the dataset.
+
+-   Structure
+-   Dimensions
+-   Summary Statistics for each column
+
+```{r}
+
+```
+
+3.  We'll be concentrating on a few key fields. Use the vignette about the `flights` table to look up the definitions of the following fields:
+
+-   `dep_delay` & `arr_delay`
+-   `hour` & `minute`
+-   `origin`
+
+Copy those definitions as a response here.
+
+```{r}
+
+```
+
+4.  Create a bar chart that demonstrates which origin occurs most frequently. Write a short interpretation of the bar graph.
+
+```{r}
+
+```
+
+5.  What is the distribution of flight departure times by hour? Describe the plot that you created.
+
+    *Hint: Consider different geometries when creating the graph. Histograms are usually a good place to start when considering distributions, but bar plots can be helpful as well.*
+
+```{r}
+
+```
+
+6.  How does the distribution change when we consider the origin of the flight? Build upon your response in question 5. Describe the differences.
+
+    *Hint: Experiment with faceting to find a view that is most helpful.*
+
+```{r}
+
+```
+
+7.  How does departure hour interact with departure delay? Utilize a [boxplot](https://towardsdatascience.com/understanding-boxplots-5e2df7bcbd51). Interpret the graph.
+
+    *Hint: It can be helpful to adjust the portion of the graph that you observe in order to find patterns. Consider using `coord_cartesian` to help with this.*
+
+```{r}
+
+```
+
+8.  Create your own question and answer it by using a graph. You may use any of the datasets loaded in the `nycflights13` package.
+
+-   Indicate what your question is. Consider a question that could be answered best by utilizing facets, multiple geometries, multiple aesthetics, or some combination of those.
+-   Create a graph that assists in answering the question.
+-   Write a short interpretation of the graph in order to answer your question.
+
+9.  You have now built a variety of graphics using the `ggplot2` system. Describe some of the advantages to the "grammar of graphics" approach to creating graphs.
