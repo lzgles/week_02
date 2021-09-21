@@ -7,32 +7,6 @@ output: html_document
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-This assignment is due by 6 pm on the evening of the 3rd class. It should be submitted via Github.
-
-#### Textbook
-
--   Review from this past week:
-    -   [Chapter 7 - Exploratory Data Analysis](https://r4ds.had.co.nz/exploratory-data-analysis.html)
-    -   [Chapter 11 - Data Import](https://r4ds.had.co.nz/data-import.html)
-    
-- Prepare for next week:
-    -   [Chapter 5 - Data transformation](https://r4ds.had.co.nz/transform.html)
-    -   [Chapter 8 - Workflow: projects](https://r4ds.had.co.nz/workflow-projects.html)
-    -   [Chapter 9 - Wrangle Introduction](https://r4ds.had.co.nz/wrangle-intro.html)
-    -   [Chapter 10 - Tibbles](https://r4ds.had.co.nz/tibbles.html)
-
-#### Additional Readings
-
--   [*Happy Git and GitHub for the useR*](https://happygitwithr.com/)
-
-    -   Chapters 15-19
-
-#### Supplemental Readings
-
-*Note: these are not required, but may be helpful for you to better understand the work.*
-
--   [A layered grammar of graphics](https://vita.had.co.nz/papers/layered-grammar.html)
-
 #### Exercises
 
 1.  Install the `nycflights13` package and load it into the namespace of your R session. Also, load the `tidyverse` package into the namespace of your R session. Attach the `airlines`, `airports`, `flights`, `weather`, and `planes` datasets
