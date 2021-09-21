@@ -1,4 +1,4 @@
-# **Week 2 - Introduction to Exploratory Data Analysis**
+# Week 2 - Introduction to Exploratory Data Analysis
 
 We will use the Exploratory Data Analysis (EDA) framework as a way to begin working with R. A key component of EDA is visualizing data. Topics covered will include:
 
