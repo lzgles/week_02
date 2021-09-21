@@ -14,14 +14,14 @@ We will use the Exploratory Data Analysis (EDA) framework as a way to begin work
 
 ## Assignment
 
-|                   |                                |
-|-------------------|--------------------------------|
-| Points:           | 5                              |
-| Display grade as: | Points                         |
-| Submission type:  | Via Github                     |
-| Due date:         | October 11, 2021, during class |
-| Available from:   | October 4, 12:00 am            |
-| Until:            |                                |
+|                   |                           |
+|-------------------|---------------------------|
+| Points:           | 5                         |
+| Display grade as: | Points                    |
+| Submission type:  | Via Github                |
+| Due date:         | October 11, 2021, 5:59 pm |
+| Available from:   | October 4, 2021, 12:00 am |
+| Until:            |                           |
 
 Complete all questions in the `Week_02_Assignment.Rmd` file.
 
