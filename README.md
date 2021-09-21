@@ -8,7 +8,7 @@ We will use the Exploratory Data Analysis (EDA) framework as a way to begin work
 
 -   Importing data into R from Excel files and .csvs
 
--   Visualizing data using ggplot2
+-   Visualizing data using `ggplot2`
 
 -   Sharing code using git and Github
 
