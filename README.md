@@ -18,7 +18,7 @@ We will use the Exploratory Data Analysis (EDA) framework as a way to begin work
 
 |                   |                           |
 |-------------------|---------------------------|
-| Points:           | 5                         |
+| Points:           | 10                        |
 | Display grade as: | Points                    |
 | Submission type:  | Via Github                |
 | Due date:         | October 11, 2021, 5:59 pm |
