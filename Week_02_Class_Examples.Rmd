@@ -1,0 +1,259 @@
+---
+title: "Week 02 Class Examples"
+author: "Ryan Harrington"
+date: "10/4/2021"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r}
+install.packages("tidyverse")
+```
+
+```{r}
+library(tidyverse)
+```
+
+palmerpenguins
+
+```{r}
+# install.packages("palmerpenguins")
+library(palmerpenguins)
+```
+
+
+```{r}
+data("penguins")
+```
+
+```{r}
+penguins
+```
+```{r}
+str(penguins)
+```
+
+```{r}
+summary(penguins)
+```
+```{r}
+str(penguins)
+```
+
+```{r}
+mean(penguins$body_mass_g, na.rm = TRUE)
+```
+
+```{r}
+median(penguins$flipper_length_mm, na.rm = T)
+```
+
+```{r}
+# View(penguins)
+```
+
+```{r}
+penguins[, 1]
+penguins[1, ]
+penguins[1:10,]
+penguins[,1:5]
+
+penguins[1:10, 1:5]
+
+penguins[seq(from = 2, to = 60, by = 2),]
+```
+
+```{r}
+nrow(penguins)
+ncol(penguins)
+dim(penguins)
+```
+
+```{r}
+penguins[seq(from = 2, to = nrow(penguins), by = 2),]
+```
+
+```{r}
+penguin_islands <- unique(penguins$island)
+```
+
+```{r}
+unique(penguins$bill_length_mm)
+```
+
+```{r}
+length(unique(penguins$bill_length_mm))
+```
+
+```{r}
+str(penguins)
+summary(penguins)
+```
+# How does bill length compare to bill depth?
+
+```{r}
+ggplot(data = penguins,
+       aes(x = bill_depth_mm,
+           y = bill_length_mm)) +
+  geom_point()
+```
+
+# How about flipper length vs bill length?
+
+```{r}
+ggplot(data = penguins,
+       aes(x = flipper_length_mm,
+           y = bill_length_mm)) +
+  geom_point()
+```
+
+```{r}
+ggplot(data = penguins,
+       aes(x = flipper_length_mm,
+           y = bill_length_mm,
+           color = species)) +
+  geom_point()
+```
+
+```{r}
+ggplot(data = penguins,
+       aes(x = flipper_length_mm,
+           y = bill_length_mm)) +
+  geom_point(color = "blue")
+```
+
+```{r}
+ggplot(data = penguins,
+       aes(x = flipper_length_mm,
+           y = bill_length_mm,
+           color = "blue")) +
+  geom_point()
+```
+
+```{r}
+ggplot(data = penguins,
+       aes(x = flipper_length_mm,
+           y = bill_length_mm)) +
+  geom_point(color = species)
+```
+
+```{r}
+ggplot(data = penguins,
+       aes(x = flipper_length_mm,
+           y = bill_length_mm)) +
+  geom_point() +
+  geom_smooth()
+```
+
+```{r}
+ggplot(data = penguins,
+       aes(x = flipper_length_mm,
+           y = bill_length_mm,
+           color = species)) +
+  geom_point() +
+  geom_smooth()
+```
+
+```{r}
+ggplot(data = penguins,
+       aes(x = flipper_length_mm,
+           y = bill_length_mm)) +
+  geom_point(aes(color = species)) +
+  geom_smooth(aes(group = species),
+              color = "black")
+```
+
+```{r}
+ggplot(data = penguins,
+       aes(x = flipper_length_mm,
+           y = bill_length_mm)) +
+  geom_point(aes(color = species)) +
+  geom_smooth(aes(group = species),
+              color = "black") +
+  facet_grid(~ species)
+```
+
+```{r}
+ggplot(data = penguins,
+       aes(x = flipper_length_mm,
+           y = bill_length_mm)) +
+  geom_point(aes(color = species)) +
+  geom_smooth(aes(group = species),
+              color = "black") +
+  facet_grid(island ~ species)
+```
+
+```{r}
+ggplot(data = penguins,
+       aes(x = flipper_length_mm,
+           y = bill_length_mm)) +
+  geom_point(aes(color = species)) +
+  geom_smooth(aes(group = species),
+              color = "black") +
+  facet_wrap(~ species, ncol = 2)
+```
+
+# How many species are on each island?
+
+```{r}
+ggplot(data = penguins) +
+  geom_bar(aes(x = species,
+               fill = island))
+```
+
+```{r}
+ggplot(data = penguins) +
+  geom_bar(aes(x = species,
+               fill = island),
+           position = "dodge")
+```
+
+# What is the distribution of bill length?
+
+```{r}
+ggplot(data = penguins) +
+  geom_histogram(aes(x = bill_length_mm,
+                     fill = species),
+                 bins = 50)
+```
+
+```{r}
+ggplot(data = penguins) +
+  geom_boxplot(aes(x = body_mass_g,
+                   y = species))
+```
+
+```{r}
+ggplot(data = penguins,
+       aes(x = bill_length_mm,
+           y = flipper_length_mm)) +
+  geom_point()
+```
+
+```{r}
+data("mpg")
+```
+
+```{r}
+mpg
+```
+
+```{r}
+ggplot(data = mpg,
+       aes(x = cty,
+           y = hwy,
+           color = as.factor(cyl))) +
+  geom_point(size = .5) +
+  facet_wrap(~ model, ncol = 8)
+```
+
+```{r}
+ggplot(data = mpg,
+       aes(x = cyl)) +
+  geom_bar(width = 0.9) +
+  facet_grid(~year)
+```
+

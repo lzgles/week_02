@@ -1,0 +1,1915 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+  <head>
+    <title>Foundations of R</title>
+    <meta charset="utf-8" />
+    <meta name="author" content="Ryan Harrington" />
+    <meta name="date" content="2021-09-27" />
+    <script src="index_files/header-attrs/header-attrs.js"></script>
+    <script src="index_files/htmlwidgets/htmlwidgets.js"></script>
+    <script src="index_files/jquery/jquery.min.js"></script>
+    <link href="index_files/datatables-css/datatables-crosstalk.css" rel="stylesheet" />
+    <script src="index_files/datatables-binding/datatables.js"></script>
+    <link href="index_files/dt-core/css/jquery.dataTables.min.css" rel="stylesheet" />
+    <link href="index_files/dt-core/css/jquery.dataTables.extra.css" rel="stylesheet" />
+    <script src="index_files/dt-core/js/jquery.dataTables.min.js"></script>
+    <link href="index_files/crosstalk/css/crosstalk.css" rel="stylesheet" />
+    <script src="index_files/crosstalk/js/crosstalk.min.js"></script>
+    <link rel="stylesheet" href="xaringan-themer.css" type="text/css" />
+    <link rel="stylesheet" href="custom.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+
+
+
+
+
+
+
+
+
+class: animated, fadeIn, content-slide
+layout: true
+
+---
+
+class: title-slide, middle
+layout: false
+
+# Foundations of R for Data Analysis
+
+### Week 02: Introduction to Exploratory Data Analysis
+
+Ryan Harrington&lt;br&gt;
+October 4, 2021&lt;br&gt;
+University of Delaware&lt;br&gt;
+College of Professional &amp; Continuing Studies
+
+---
+
+class: content-slide
+
+# Questions We'll Answer Today
+
+### 📄 How do I submit my homework?&lt;br&gt;
+### 📦 What's a package? Why do we use them?&lt;br&gt;
+### 🐧 What's the deal with penguins?&lt;br&gt;
+### 📊 How do I make a graph?&lt;br&gt;
+### ⁉️ How does this relate to exploratory data analysis?&lt;br&gt;
+
+---
+
+class: content-slide
+
+# What is git?
+
+---
+
+class: content-slide
+
+# How to submit your homework
+
+1.  Fork this repository.
+
+2.  Clone the repository to your local machine.
+
+3.  Answer questions in the `Week_01_Assignment.Rmd` file.
+
+4.  Push your final code to the remote repository.
+
+5.  Add [@rharrington31](https://github.com/rharrington31) as a collaborator in the remote repository.
+
+6.  Create an issue.
+
+7. Name the issue "Mark assignment `x` of firstname lastname", where `x` is 1, 2, etc.
+
+8. Assign my username [@rharrington31](https://github.com/rharrington31) in the "Assignees" section.
+
+9. Paste the revision SHA in the comment description.
+
+
+---
+
+class: content-slide
+
+# How to submit your homework
+
+ ✅  Fork this repository.&lt;br&gt;
+
+ ✅  Clone the repository to your local machine.&lt;br&gt;
+
+ ✅  Answer questions in the `Week_02_Assignment.Rmd` file.&lt;br&gt;
+
+&lt;ol&gt;
+&lt;li value="4"&gt;  Push your final code to the remote repository.&lt;/li&gt;&lt;br&gt;
+
+&lt;li value="5"&gt;  Add &lt;a href="https://github.com/rharrington31"&gt;@rharrington31&lt;/a&gt; as a collaborator in the remote repository.&lt;/li&gt;&lt;br&gt;
+
+&lt;li value="6"&gt;  Create an issue.&lt;/li&gt;&lt;br&gt;
+
+&lt;li value="7"&gt; Name the issue "Mark assignment &lt;span class="remark-inline-code"&gt;x&lt;/span&gt; of firstname lastname", where &lt;span class="remark-inline-code"&gt;x&lt;/span&gt; is 1, 2, etc.&lt;/li&gt;&lt;br&gt;
+
+&lt;li value="8"&gt; Assign my username &lt;a href="https://github.com/rharrington31"&gt;@rharrington31&lt;/a&gt; in the "Assignees" section.&lt;/li&gt;&lt;br&gt;
+
+&lt;li value="9"&gt; Paste the revision SHA in the comment description.&lt;/li&gt;&lt;br&gt;
+&lt;/ol&gt;
+
+---
+
+class: content-slide
+
+# `git status`
+
+Running **`git status`** in your terminal gives you a quick way to see what is happening with the files in your repository.
+
+
+```bash
+Ryans-MacBook-Pro:Week_02 ryanharrington$ git status
+On branch master
+Untracked files:
+  (use "git add &lt;file&gt;..." to include in what will be committed)
+
+        analysis.Rmd
+        another analysis.Rmd
+        Name_of_Folder
+
+nothing added to commit but untracked files present (use "git add" to track)
+```
+
+---
+
+class: content-slide
+
+# `git status`
+
+It tells you what **branch** you are currently on.
+
+
+```bash
+Ryans-MacBook-Pro:Week_02 ryanharrington$ git status
+*On branch master
+Untracked files:
+  (use "git add &lt;file&gt;..." to include in what will be committed)
+
+        analysis.Rmd
+        another analysis.Rmd
+        Name_of_Folder
+
+nothing added to commit but untracked files present (use "git add" to track)
+```
+
+---
+
+class: content-slide
+
+# `git status`
+
+If you have any **untracked files**...
+
+
+```bash
+Ryans-MacBook-Pro:Week_02 ryanharrington$ git status
+On branch master
+*Untracked files:
+  (use "git add &lt;file&gt;..." to include in what will be committed)
+
+        analysis.Rmd
+        another analysis.Rmd
+        Name_of_Folder
+
+nothing added to commit but untracked files present (use "git add" to track)
+```
+
+---
+
+class: content-slide
+
+# `git status`
+
+...and which files those would be.
+
+
+```bash
+Ryans-MacBook-Pro:Week_02 ryanharrington$ git status
+On branch master
+Untracked files:
+  (use "git add &lt;file&gt;..." to include in what will be committed)
+
+*        analysis.Rmd
+*        another analysis.Rmd
+*        Name_of_Folder
+
+nothing added to commit but untracked files present (use "git add" to track)
+```
+
+---
+
+class: content-slide
+
+# `git status`
+
+It even gives you some convenient instructions for what you might want to do next.
+
+
+```bash
+Ryans-MacBook-Pro:Week_02 ryanharrington$ git status
+On branch master
+Untracked files:
+*  (use "git add &lt;file&gt;..." to include in what will be committed)
+
+        analysis.Rmd
+        another analysis.Rmd
+        Name_of_Folder
+
+*nothing added to commit but untracked files present (use "git add" to track)
+```
+
+---
+
+class: content-slide
+
+# The `add`-`commit`-`push` pattern
+
+Now that `git status` has helped you figure out what is happening in your repository, you can use that information to transfer your code from your **local** machine to your **remote repository**.
+
+We do that by using a series of 3 commands:
+
+* **`git add`** - this command moves the untracked changes from your document into a staging area
+* **`git commit`** - you describe the changes that you made and moves your staged code to a local git repo
+* **`git push`** - you send the code from your local git repo to your remote git repo
+
+&lt;img src="https://softcover.s3.amazonaws.com/636/learn_enough_git/images/figures/git_status_sequence.png" alt="Git add-commit-push pattern visualized"&gt;
+
+---
+
+class: content-slide
+
+# The `add`-`commit`-`push` pattern
+
+**`git add`** is how you tell git which untracked file you want to begin tracking, thereby moving it into the staging area. You do this by explicitly naming the file you want to track. 
+
+
+```bash
+git add analysis.Rmd
+```
+
+If your file name has spaces in it, you can wrap the name of your file in quotes.
+
+
+```bash
+git add "another analysis.Rmd"
+```
+
+You can add an entire folder at once as well.
+
+
+```bash
+git add Name_of_Folder
+```
+
+And if you want to add everything in your current directory, you do that with a **`.`**
+
+
+```bash
+git add .
+```
+
+---
+
+class: content-slide
+
+# The `add`-`commit`-`push` pattern
+
+**`git commit`** is how you tell git what changes you just made and move your changes into the local git repository. Here's how that would look:
+
+
+```bash
+git commit -m "Updated analysis to include bar graphs"
+```
+
+Notice the **`-m`** "flag" that is included. For right now, you'll include that every time you make a commit. The `-m` literally stands for "message". 
+
+After that, you include your message in quotes. This should be a short description of the changes that you made between your last commit and this one. If this is the first time you are making a commit with your current file, it is common for people to simply say "Initial commit."
+
+A `git commit` can happen after you have added one file *or* multiple files. When you make a commit after adding multiple files, they will all include the same message.
+
+---
+
+class: content-slide
+
+# The `add`-`commit`-`push` pattern
+
+**`git push`** is how you tell git to send the code from your local git repo (meaning your machine) to your remote git repo (in our case meaning GitHub). Here's how that will look:
+
+
+```bash
+git push origin master
+```
+
+**`origin`** refers to the remote repository that you will be pushing your code to.
+
+**`master`** refers to the branch in that repository that you will be pushing your code to.
+
+For right now, you likely will not be changing either of these things.
+
+--
+
+.text-highlight[Once you've pushed your code, congratulations - it will now appear in your repository on GitHub!]
+
+---
+
+class: content-slide
+
+# Adding Collaborators to Your Repo
+
+Next, you'll have to make some changes to your repository:
+
+* Add me as a collaborator by going to `Settings` &gt; `Manage Access` &gt; `Invite a Collaborator` and adding my username @rharrington31
+
+* Enable "Issues" by going to `Settings` &gt; `Options` &gt; `Features` and select `Issues`
+
+---
+
+class: content-slide
+
+# Create an Issue
+
+* Make sure you have committed all the files associated with your solution in your local Git repository.
+
+* Make sure you have pushed the current state of your local repo to GitHub.
+
+* Open your private GitHub repository in a web browser
+
+* On the web page just above the files, .text-highlight[look for the text "latest commit" followed by ten numbers and letters] (called the revision SHA) and a clipboard icon
+
+* Click on the clipboard icon to .text-highlight[copy the revision SHA to your clipboard]
+
+* Create an issue in your private repository. Click on `Issues`, then on `New Issue`. Name the issue .text-highlight["Mark assignment x of firstname lastname"], where x is, e.g. 1 or 2.
+
+* Assign the work to me in the "Assignees" portion of the issue by .text-highlight[tagging my username @rharrington31].
+
+* .text-highlight[Paste the revision SHA] in the description of the issue.
+
+* Click .text-highlight["Submit new issue"]. You're done! Congratulations!
+
+---
+
+class: content-slide
+
+# Extending `R`
+
+Last week we explored some basic functions in `R`. These are functions that are loaded with `R` out of the box. Colloquially, we call any functions like this and the style of coding that comes with it **base R**.
+
+You can build plenty of things with base R...theoretically anything really.
+
+However, why solve problems that other people have already solved?
+
+Enter **packages**.
+
+---
+
+class: content-slide
+
+# What's a package? Why do we use them?
+
+`R` packages are a collection of functions built and maintained by the `R` community.
+
+They build on top of base `R`'s functionality - extending it dramatically.
+
+Just like `R`, packages are open source. If you're using a package that you downloaded and are unsure of how a function works you can directly examine the source code for it. That code may be written in `R` or another language.
+
+---
+
+class: content-slide
+
+# Have any examples of packages?
+
+Yes. So many.
+
+There are packages to... **load data** [(Source)](https://support.rstudio.com/hc/en-us/articles/201057987-Quick-list-of-useful-R-packages)
+
+&gt; [DBI](https://db.rstudio.com/dbi/) - The standard for for communication between R and relational database management systems. Packages that connect R to databases depend on the DBI package.
+
+&gt; [odbc](https://db.rstudio.com/odbc/) - Use any ODBC driver with the odbc package to connect R to your database. Note: RStudio professional products come with professional drivers for some of the most popular databases.
+
+&gt; [RMySQL](http://www.rdocumentation.org/packages/RMySQL/functions/RMySQL-package), [RPostgresSQL](http://www.rdocumentation.org/packages/RPostgresSQL), [RSQLite](http://www.rdocumentation.org/packages/RSQLite) - If you'd like to read in data from a database, these packages are a good place to start. Choose the package that fits your type of database.
+
+&gt; [XLConnect](https://cran.rstudio.com/web/packages/XLConnect), [xlsx](https://cran.rstudio.com/web/packages/xlsx) - These packages help you read and write Micorsoft Excel files from R. You can also just export your spreadsheets from Excel as .csv's.
+
+&gt; [foreign](http://www.rdocumentation.org/packages/foreign) - Want to read a SAS data set into R? Or an SPSS data set? Foreign provides functions that help you load data files from other programs into R.
+
+---
+
+class: content-slide
+
+# Have any examples of packages?
+
+Yes. So many.
+
+There are packages to... **manipulate data**. [(Source)](https://support.rstudio.com/hc/en-us/articles/201057987-Quick-list-of-useful-R-packages)
+
+&gt; [tidyverse](https://www.tidyverse.org/) - An opinionated collection of R packages designed for data science that share an underlying design philosophy, grammar, and data structures. This collection includes all the packages in this section, plus many more for data import, tidying, and visualization listed here.
+
+&gt; [dplyr](http://blog.rstudio.org/2014/01/17/introducing-dplyr/) - Essential shortcuts for subsetting, summarizing, rearranging, and joining together data sets. dplyr is our go to package for fast data manipulation.
+
+&gt; [tidyr](http://blog.rstudio.org/2014/07/22/introducing-tidyr/) - Tools for changing the layout of your data sets. Use the gather and spread functions to convert your data into the tidy format, the layout R likes best.
+
+&gt; [stringr](http://journal.r-project.org/archive/2010-2/RJournal_2010-2_Wickham.pdf) - Easy to learn tools for regular expressions and character strings.
+
+&gt; [lubridate](http://www.r-statistics.com/2012/03/do-more-with-dates-and-times-in-r-with-lubridate-1-1-0/) - Tools that make working with dates and times easier.
+
+---
+
+class: content-slide
+
+# Have any examples of packages?
+
+Yes. So many.
+
+There are packages to... **visualize data**. [(Source)](https://support.rstudio.com/hc/en-us/articles/201057987-Quick-list-of-useful-R-packages)
+
+&gt; [ggplot2](http://docs.ggplot2.org/current/) - R's famous package for making beautiful graphics. ggplot2 lets you use the grammar of graphics to build layered, customizable plots.
+
+&gt; [ggvis](http://ggvis.rstudio.com/) - Interactive, web based graphics built with the grammar of graphics.
+
+&gt; [rgl](http://rgl.neoscientists.org/about.shtml) - Interactive 3D visualizations with R
+
+&gt; [htmlwidgets](http://www.htmlwidgets.org/) - A fast way to build interactive (javascript based) visualizations with R. Packages that implement htmlwidgets include:
+
+&gt; * [leaflet](http://rstudio.github.io/leaflet/) (maps)
+&gt; * [dygraphs](http://rstudio.github.io/dygraphs) (time series)
+&gt; * [DT](http://rstudio.github.io/DT/) (tables)
+&gt; * [diagrammeR](http://rich-iannone.github.io/DiagrammeR/) (diagrams)
+&gt; * [network3D](http://christophergandrud.github.io/networkD3/) (network graphs)
+
+---
+
+class: content-slide
+
+# Have any examples of packages?
+
+Yes. So many.
+
+There are packages to... **model data**. [(Source)](https://support.rstudio.com/hc/en-us/articles/201057987-Quick-list-of-useful-R-packages)
+
+&gt; [tidymodels](https://www.tidymodels.org/) - A collection of packages for modeling and machine learning using tidyverse principles. This collection includes rsample, parsnip, recipes, broom, and many other general and specialized packages listed here.
+
+&gt; [car](http://www.rdocumentation.org/packages/car) - car's Anova function is popular for making type II and type III Anova tables.
+
+&gt; [mgcv](http://www.rdocumentation.org/packages/mgcv/functions/mgcv-package) - Generalized Additive Models
+
+&gt; [lme4](http://www.rdocumentation.org/packages/lme4/functions/lme4-package)/[nlme](http://www.rdocumentation.org/packages/nlme/functions/nlme) - Linear and Non-linear mixed effects models
+
+&gt; [randomForest](http://www.rdocumentation.org/packages/randomForest/functions/randomForest) - Random forest methods from machine learning
+
+&gt; [multcomp](http://www.rdocumentation.org/packages/multcomp) - Tools for multiple comparison testing
+
+&gt; [vcd](http://www.rdocumentation.org/packages/vcd) - Visualization tools and tests for categorical data
+
+---
+
+class: content-slide
+
+# Have any examples of packages?
+
+Yes. So many.
+
+There are packages to... **do weird stuff**. [(Source)](https://towardsdatascience.com/the-most-underrated-r-packages-254e4a6516a1)
+
+&gt; [generativeart](https://github.com/cutterkom/generativeart): Beautiful math-inspired abstract art.
+
+&gt; [pushoverr](https://github.com/briandconnelly/pushoverr): Send push notifications from R to mobile devices or the desktop.
+
+&gt; [Rayshader](https://www.tylermw.com/3d-ggplots-with-rayshader/): 3D Plots that doesn’t suck.
+
+&gt; [vaporwave](https://github.com/moldach/vapoRwave): A E S T H E T I C S’ time. Beautify your plots like it’s still the 80's.
+
+&gt; [wesanderson](https://github.com/karthik/wesanderson): A Wes Anderson color palette for R
+
+---
+
+class: content-slide
+
+# Installing packages
+
+Very easy!
+
+You only have to do this once on your computer for each package.
+
+Packages are downloaded from place called [CRAN](https://cran.r-project.org/). You'll note that this is the same place that you downloaded `R` from in the first place.
+
+
+```r
+install.packages("package_name")
+```
+
+Think of CRAN as a library and the `install.packages` function as checking a book out and bringing it to your house.
+
+When you install the package, you're downloading a copy of the source code onto your computer.
+
+---
+
+class: content-slide
+
+# Loading packages
+
+Just because you've checked out a book and brought it home doesn't mean you've read it.
+
+Every time you want to use an `R` package you have to read the package. You'll do that for each new session that you open up.
+
+
+```r
+library(package_name)
+```
+
+---
+
+class: content-slide
+
+# Let's install and load a package.
+
+When installing packages you will see a very large number of messages updating you to the status of what is happening throughout the installation. Ultimately, you will see that the installation is complete when it tells you where on your location machine the package has been installed to.
+
+
+```r
+install.packages("tidyverse")
+```
+
+---
+
+class: content-slide
+
+# Let's install and load a package.
+
+When you use the `library` function, you are telling `R` to *"load and attach add-on packages"* to the **namespace**. If we continue our library analogy, the namespace is basically a list of the books that we have checked out and are actively reading.
+
+Let's try this with our recently installed `tidyverse` package.
+
+
+```r
+library(tidyverse)
+```
+
+When we load in an `R` package we get a variety of messages telling us what is happening. It may not look exactly like this every time. In fact, the `tidyverse` load message is among the most stylized messages that you will see in your time using `R`.
+
+---
+
+class: content-slide
+
+# The `tidyverse`
+
+One thing you might have noticed is that there are actually *eight* different packages which have been loaded by calling `library(tidyverse)`. The tidyverse is not just a package, but rather a framework of several packages that work cohesively together.
+
+.pull-left[
+The eight packages that were loaded are:
+
+-   `ggplot2` - a graphing and visualization library
+-   `tibble` - an alternate type of dataframe
+-   `tidyr` - a library for reshaping data
+-   `readr` - a library for ingesting data
+-   `purrr` - a library for better working with lists
+-   `dplyr` - a library for data manipulation
+-   `stringr` - a library to improve working with strings
+-   `forcats` - a library for working with factors
+]
+
+.pull-right[
+&lt;img src="images/tidyverse_hexes.png" alt="Tidyverse hex logos"&gt;
+]
+---
+
+class: content-slide
+
+# Install and load a package on your own
+
+Specifically, install and load the `palmerpenguins` package
+
+--
+
+
+```r
+install.packages("palmerpenguins")
+```
+
+--
+
+
+```r
+library(palmerpenguins)
+```
+
+---
+
+class: content-slide
+
+# Let's talk about 🐧 penguins
+
+.pull-left[
+&gt; Meet the penguins
+The `palmerpenguins` data contains size measurements for three penguin species observed on three islands in the Palmer Archipelago, Antarctica.
+
+&gt; These data were collected from 2007 - 2009 by Dr. Kristen Gorman with the Palmer Station Long Term Ecological Research Program, part of the US Long Term Ecological Research Network.
+
+[Source](https://allisonhorst.github.io/palmerpenguins/articles/intro.html)
+]
+
+.pull-right[&lt;img src="https://allisonhorst.github.io/palmerpenguins/reference/figures/lter_penguins.png" alt="Visual of the palmer penguins - Chinstrap, Gentoo, and Adélie" style="width:700px"&gt;]
+
+
+---
+
+class: content-slide
+
+# Working with the penguins
+
+In order to use this dataset, we need to use the `data` function to attach it to our environment.
+
+
+```r
+data("penguins")
+```
+
+Two datasets are loaded into your environment - `penguins` and `penguins_raw`.
+
+---
+
+class: content-slide
+
+# Working with the penguins
+
+<div id="htmlwidget-ec537765fe1096439517" style="width:100%;height:auto;" class="datatables html-widget"></div>
+<script type="application/json" data-for="htmlwidget-ec537765fe1096439517">{"x":{"filter":"none","fillContainer":false,"data":[["1","2","3","4","5","6"],["Adelie","Adelie","Adelie","Adelie","Adelie","Adelie"],["Torgersen","Torgersen","Torgersen","Torgersen","Torgersen","Torgersen"],[39.1,39.5,40.3,null,36.7,39.3],[18.7,17.4,18,null,19.3,20.6],[181,186,195,null,193,190],[3750,3800,3250,null,3450,3650],["male","female","female",null,"female","male"],[2007,2007,2007,2007,2007,2007]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>species<\/th>\n      <th>island<\/th>\n      <th>bill_length_mm<\/th>\n      <th>bill_depth_mm<\/th>\n      <th>flipper_length_mm<\/th>\n      <th>body_mass_g<\/th>\n      <th>sex<\/th>\n      <th>year<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"pageLength":8,"columnDefs":[{"className":"dt-right","targets":[3,4,5,6,8]},{"orderable":false,"targets":0}],"order":[],"autoWidth":false,"orderClasses":false,"lengthMenu":[8,10,25,50,100]}},"evals":[],"jsHooks":[]}</script>
+
+---
+
+class: content-slide
+
+# Basic dataframe exploration
+
+When I first begin working with a new dataset, I start with a consistent set of tools to explore the dataset. It's helpful to understand the shape of the dataset - the number of columns, the number of rows, the available columns, etc.
+
+A great way to do that is to observe the **structure** of the dataframe by utilizing the `str` function.
+
+
+```r
+str(penguins)
+```
+
+We can quickly see the basic information about the dataframe:
+
+-   `tibble[,8]` tells us that this object is of type `tibble` with 8 columns. Recall that a `tibble` is just an alternate type of dataframe. We'll talk more about the differences later.
+-   `[344 × 8]` tells us that the `penguins` object has 344 rows and 8 columns
+-   `(S3: tbl_df/tbl/data.frame)` tells us the various classes associated with the tibble
+
+---
+
+class: content-slide
+
+# Basic dataframe exploration
+
+When I first begin working with a new dataset, I start with a consistent set of tools to explore the dataset. It's helpful to understand the shape of the dataset - the number of columns, the number of rows, the available columns, etc.
+
+A great way to do that is to observe the **structure** of the dataframe by utilizing the `str` function.
+
+
+```r
+str(penguins)
+```
+
+You'll also notice that each of the columns with column metadata is listed for us:
+
+```
+ $ species          : Factor w/ 3 levels "Adelie","Chinstrap",..: 1 1 1 1 1 1 1 1 1 1 ...
+ $ island           : Factor w/ 3 levels "Biscoe","Dream",..: 3 3 3 3 3 3 3 3 3 3 ...
+ $ bill_length_mm   : num [1:344] 39.1 39.5 40.3 NA 36.7 39.3 38.9 39.2 34.1 42 ...
+ $ bill_depth_mm    : num [1:344] 18.7 17.4 18 NA 19.3 20.6 17.8 19.6 18.1 20.2 ...
+ $ flipper_length_mm: int [1:344] 181 186 195 NA 193 190 181 195 193 190 ...
+ $ body_mass_g      : int [1:344] 3750 3800 3250 NA 3450 3650 3625 4675 3475 4250 ...
+ $ sex              : Factor w/ 2 levels "female","male": 2 1 1 NA 1 2 1 2 NA NA ...
+ $ year             : int [1:344] 2007 2007 2007 2007 2007 2007 2007 2007 2007 2007 ...
+```
+---
+
+class: content-slide
+
+# Basic dataframe exploration
+
+Another excellent tool for data exploration is `summary`.
+
+
+```r
+summary(penguins)
+```
+
+The `summary` function provides a 5 number summary for numeric values and provides counts for other data types. You'll also notice that for all columns it provides counts for `NA`s. We haven't discussed `NA` values yet, but as you might guess, `NA` values are how `R` displays...nothing.
+
+---
+
+class: content-slide
+
+# Basic dataframe exploration
+
+One thing you may have noticed when we used `str` is that each column was preceded by the `$` symbol. This actually gives us a hint about one way to access the different columns of a dataframe.
+
+
+```r
+penguins$species
+penguins$island
+```
+
+---
+
+class: content-slide
+
+# Basic dataframe exploration
+
+If we want to access specific rows or columns, we can do that by using the concept of brackets. Inside of brackets we can access the data by specifying the rows and columns that we are interested in:
+
+`dataframe[rows, columns]`
+
+
+```r
+# First column
+penguins[,1]
+
+# First row
+penguins[1,]
+
+# First ten rows,
+penguins[1:10,]
+
+# First row, first column
+penguins[1, 1]
+```
+
+We can, of course, combine this with other concepts to subset data in more interesting ways.
+
+
+```r
+# Which rows are we going to subset?
+penguins[seq(from = 2, to = 60, by = 2),]
+```
+
+---
+
+class: content-slide
+
+# Basic dataframe exploration
+
+If we want to get the shape of of our data - how many rows and columns it has - there are a few utility functions that we can make use of. These can be really helpful to use when programming.
+
+
+```r
+# Number of rows
+nrow(penguins)
+
+# Number of columns
+ncol(penguins)
+
+# Rows by columns
+dim(penguins)
+```
+
+Here's a toy example of how we could use this. Pretend that we want to subset all even or all odd rows in our dataframe. We can do this easily by using `seq` and `nrow`.
+
+
+```r
+penguins[seq(from = 2, to = nrow(penguins), by = 2),]
+```
+
+---
+
+class: content-slide
+
+# Basic dataframe exploration
+
+Another useful tool is the `unique` function. It does exactly what it sounds like it does - it returns the *unique* values in a list.
+
+
+```r
+unique(penguins)
+```
+
+Note that this returned the whole dataframe. At first, it doesn't seem very useful. The `penguins` dataframe typically has 344 rows and after passing it to `unique` there are still 344 rows. If we review the description of the function, you'll see why:
+
+&gt; `unique` returns a vector, data frame or array like `x` but with duplicate elements/rows removed.
+
+So we did learn something - there are no rows in the `penguins` dataframe that are exactly the same.
+
+---
+
+class: content-slide
+
+# Basic dataframe exploration
+
+As the description mentions, we can also use this function on a vector:
+
+
+```r
+unique(penguins$species)
+```
+
+```
+## [1] Adelie    Gentoo    Chinstrap
+## Levels: Adelie Chinstrap Gentoo
+```
+
+This also works with numeric values...though it's definitely less useful:
+
+
+```r
+unique(penguins$bill_depth_mm)
+```
+
+```
+##  [1] 18.7 17.4 18.0   NA 19.3 20.6 17.8 19.6 18.1 20.2 17.1 17.3 17.6 21.2 21.1
+## [16] 19.0 20.7 18.4 21.5 18.3 19.2 17.2 18.9 18.6 17.9 16.7 17.0 20.0 18.5 19.1
+## [31] 19.7 16.9 18.8 17.7 19.5 17.5 16.6 18.2 16.2 19.4 16.8 16.1 20.3 16.0 16.5
+## [46] 20.5 19.8 15.9 20.1 15.5 13.2 16.3 14.1 15.2 14.5 13.5 14.6 15.3 13.4 15.4
+## [61] 13.7 15.7 15.1 14.3 15.8 13.1 15.0 14.2 14.8 13.6 13.9 13.3 14.4 13.8 14.9
+## [76] 15.6 16.4 14.0 14.7 19.9 20.8
+```
+
+---
+
+class: content-slide
+
+# Basic dataframe exploration
+
+The `length` function is a helpful function for determining how many elements are in a vector.
+
+
+```r
+length(penguins$bill_depth_mm)
+```
+
+```
+## [1] 344
+```
+
+It can be used to do more complex things as well. I often pair it with `unique`. For example:
+
+
+```r
+length(unique(penguins$bill_depth_mm))
+```
+
+```
+## [1] 81
+```
+
+---
+
+class: content-slide
+
+# Basic dataframe exploration
+
+Finally, it can be helpful to see your data. The `View` function makes this easy.
+
+
+```r
+View(penguins)
+```
+
+---
+
+class: content-slide
+
+# 📊 How do I make a graph?
+&lt;br&gt;
+&lt;br&gt;
+First, figure out the question that you want to answer. 
+&lt;br&gt;
+&lt;br&gt;
+### How does .text-highlight[bill length] compare to .text-highlight[bill depth]?
+&lt;br&gt;
+&lt;br&gt;
+We might answer this with a scatterplot.
+
+---
+
+class: content-slide
+
+# How does .text-highlight[bill length] compare to .text-highlight[bill depth]?
+
+.left-code[
+
+```r
+ggplot(data = penguins,
+       aes(x = bill_depth_mm,
+           y = bill_length_mm)) +
+  geom_point()
+```
+]
+
+.right-plot[
+&lt;img src="index_files/figure-html/bill-length-depth-scatter-out-1.png" width="100%" /&gt;
+]
+
+---
+
+class: content-slide
+
+# We made a graph! How?
+
+`ggplot2` is based upon a system called the "Grammar of Graphics", which was originally developed by Leland Wilkinson (source: [print](https://www.amazon.com/Grammar-Graphics-Statistics-Computing/dp/0387245448) or [PDF](https://www.jstatsoft.org/article/view/v017b03/v17b03.pdf)).
+
+The system was then adapted by Hadley Wickham as his PhD thesis. It took off from there.
+
+It offers several key benefits:
+
+- Plot specification at a high level of abstraction 
+- Very flexible
+- Theme system for polishing plot appearance 
+- Mature and complete graphics system
+
+---
+
+class: content-slide
+
+# Examples of `ggplot2` in action
+
+.pull-left[
+&lt;img src="https://fivethirtyeight.com/wp-content/uploads/2017/09/arthur-drag-0918.png?w=1150" alt="FiveThirtyEight: The baseball's air resistance is more consistent than ever" style="width:450px"&gt;&lt;br&gt;
+[Source](https://fivethirtyeight.com/features/baseballs-are-more-consistently-juiced-than-ever/)
+]
+
+.pull-right[
+&lt;img src="https://raw.githubusercontent.com/bbc/rcookbook/master/bbplot_example_plots.png" alt="BBC: Multiple examples of ggplot2 in action, from visualizations of the Blue wave to earnings across universities"&gt;&lt;br&gt;
+[Source](https://bbc.github.io/rcookbook/)
+]
+
+---
+
+class: content-slide
+
+# How does .text-highlight[bill length] compare to .text-highlight[bill depth]?
+
+.left-code[
+
+```r
+ggplot()
+```
+
+Initialize the plot with the `ggplot` function
+]
+
+.right-plot[
+&lt;img src="index_files/figure-html/bill-length-depth-scatter-ggplot-out-1.png" width="100%" /&gt;
+]
+
+---
+
+class: content-slide
+
+# How does .text-highlight[bill length] compare to .text-highlight[bill depth]?
+
+.left-code[
+
+```r
+ggplot(data = penguins)
+```
+
+Use the `data` parameter to tell the function what dataset you'll be working from.
+]
+
+.right-plot[
+&lt;img src="index_files/figure-html/bill-length-depth-scatter-data-out-1.png" width="100%" /&gt;
+]
+
+---
+
+class: content-slide
+
+# How does .text-highlight[bill length] compare to .text-highlight[bill depth]?
+
+.left-code[
+
+```r
+ggplot(data = penguins,
+       aes(x = bill_depth_mm))
+```
+
+Tell `ggplot` which aesthetics you care about with the `aes` function.
+
+First the `x` aesthetic...
+]
+
+.right-plot[
+&lt;img src="index_files/figure-html/bill-length-depth-scatter-aes-x-out-1.png" width="100%" /&gt;
+]
+
+---
+
+class: content-slide
+
+# How does .text-highlight[bill length] compare to .text-highlight[bill depth]?
+
+.left-code[
+
+```r
+ggplot(data = penguins,
+       aes(x = bill_depth_mm,
+           y = bill_length_mm))
+```
+
+Tell `ggplot` which aesthetics you care about with the `aes` function.
+
+...then the `y` aesthetic.
+]
+
+.right-plot[
+&lt;img src="index_files/figure-html/bill-length-depth-scatter-aes-y-out-1.png" width="100%" /&gt;
+]
+
+---
+
+class: content-slide
+
+# How does .text-highlight[bill length] compare to .text-highlight[bill depth]?
+
+.left-code[
+
+```r
+ggplot(data = penguins,
+       aes(x = bill_depth_mm,
+           y = bill_length_mm)) +
+  geom_point()
+```
+
+And finally tell `ggplot` which geometry you intend to use. We "add" the geometry as a new layer to our `ggplot` object.
+
+In this case, we add `geom_point`.
+]
+
+.right-plot[
+&lt;img src="index_files/figure-html/bill-length-depth-scatter-geom-out-1.png" width="100%" /&gt;
+]
+
+---
+
+class: content-slide
+
+# `ggplot2` is all about layers
+
+Every layer in a `ggplot2` object requires the following information. Some of it needs to be explicitly supplied, some of it is implicitly determined.
+
+-   **data** — what data is being used to build the layer?
+
+-   **aesthetic mapping** — what field(s) from the data are being used to build the layer?
+
+-   **geometry** — what shape should our data take when building the layer?
+
+-   **statistic** — how should our data be transformed when building the layer?
+
+-   **position** — where should our data be placed when building the layer?
+
+Most of the time, you'll just worry about **data**, **aesthetic mapping**, and **geometry** when building a `ggplot2` object.
+
+---
+
+class: content-slide
+
+# Data
+
+Every layer in your `ggplot2` object **must** have data associated with it. Even more specifically, that .text-highlight[data must come in the form of a data frame].
+
+Here's why that matters:
+
+--
+
+&gt; * Your data is very important, and it’s best to be explicit about it.
+
+&gt; * A single data frame is also easier to save than a multitude of vectors, which means it’s easier to reproduce your results or send your data to someone else.
+
+&gt; * It enforces a clean separation of concerns: ggplot2 turns data frames into visualisations. Other packages can make data frames in the right format (learn more about that in model visualisation).
+
+[Source](https://rpubs.com/hadley/ggplot2-layers)
+
+---
+
+class: content-slide
+
+# Aesthetic Mappings
+
+If you've identified the geometry that you want to use, you then need to know which aesthetics go with it. Let's explore `geom_point` by looking at its vignette. Look all the way down at the **Aesthetics** section:
+
+&gt; `geom_point()` understands the following aesthetics (required aesthetics are in bold):
+&gt;
+&gt; -   **`x`**
+&gt; -   **`y`**
+&gt; -   `alpha`
+&gt; -   `colour`
+&gt; -   `fill`
+&gt; -   `group`
+&gt; -   `shape`
+&gt; -   `size`
+&gt; -   `stroke`
+
+You'll notice that in our example, we utilized the `x` and `y` aesthetics. Those are the minimum required aesthetics for `geom_point`. Different geometries require different aesthetics.
+
+---
+
+class: content-slide
+
+# Geometries
+
+.pull-left[
+In the `ggplot2` system, we are not limited to creating specific types of graphs. Instead, we layer different types of geometries on top of each other. You won't explicitly make a scatterplot, but rather, you will use `geom_point`. You won't explicitly make a bar chart, but rather you will use `geom_bar`.
+
+There are a lot of different geometries that you can choose from to use. You can get a quick preview of them by looking at the auto-complete options by typing `ggplot2::geom_` into your console.]
+
+.pull-right[
+&lt;img src="images/geoms.png" alt="ggplot2 geometries examples" style="width:300px" class="center"&gt;
+]
+
+---
+
+class: content-slide
+
+# What about the statistic and position?
+
+While you need to explicitly state your data, mappings, and geometry, that might not *always* be the case for the statistic and position. Each geometry has a default statistic and position value behind the scenes. Take a look at the **Usage** section for the geometry to see what those are. For example, here's `geom_point`:
+
+```
+geom_point(
+  mapping = NULL,
+  data = NULL,
+*  stat = "identity",
+*  position = "identity",
+  ...,
+  na.rm = FALSE,
+  show.legend = NA,
+  inherit.aes = TRUE
+)
+```
+
+Note that `stat` and `position` are both set to `identity`. Meaning that `ggplot2` is not transforming the data and will plot the data as is. Some other geometries have different default values. Like any other function parameter, you can change these values.
+
+---
+
+class: content-slide
+
+# That's a lot to remember.
+
+Yes, it is. Here's a [cheatsheet](https://github.com/rstudio/cheatsheets/blob/master/data-visualization-2.1.pdf).
+
+&lt;img src="images/ggplot-cheatsheet.png" alt="ggplot2 cheatsheet" style="width:45%" class="center"&gt;
+
+---
+
+class: content-slide
+
+# How about .text-highlight[flipper length] vs. .text-highlight[bill length]?
+
+.left-code[
+
+```r
+ggplot(data = penguins,
+       aes(x = flipper_length_mm,
+           y = bill_length_mm)) +
+  geom_point()
+```
+]
+
+.right-plot[
+&lt;img src="index_files/figure-html/flipper-length-depth-scatter-out-1.png" width="100%" /&gt;
+]
+
+---
+
+class: content-slide
+
+# *Mapping* Aesthetics vs. *Setting* Aesthetics
+
+When we use aesthetics, we can either map values from our dataframe to them OR explicitly set them to a value.
+
+For example, let's explore the same relationship that we have previously - bill length to flipper length. 
+
+Suppose that I am also curious to know how the different species of penguins relate to these values. 
+
+I might try to add in an additional aesthetic for `color` to help differentiate the `species` from each other.
+
+---
+
+class: content-slide
+
+# *Mapping* Aesthetics vs. *Setting* Aesthetics
+
+.left-code[
+
+```r
+ggplot(data = penguins,
+       aes(x = flipper_length_mm,
+           y = bill_length_mm,
+*          color = species)) +
+  geom_point()
+```
+
+Adding `color = species` in `aes` tells `ggplot2` to map the colors to the `species` variables.
+
+The colors that you are seeing are the default values that `ggplot2` uses. Those can be changed easily, though we will not concentrate on that in this lesson.
+]
+
+.right-plot[
+&lt;img src="index_files/figure-html/map-vs-set-aes-MAP-out-1.png" width="100%" /&gt;
+]
+
+---
+
+class: content-slide
+
+# *Mapping* Aesthetics vs. *Setting* Aesthetics
+
+.left-code[
+
+```r
+ggplot(data = penguins,
+       aes(x = flipper_length_mm,
+           y = bill_length_mm)) +
+* geom_point(color = "blue")
+```
+If we want to change the color of the points, then we move the `color` mapping outside of the `aes` function. 
+
+Anything outside of the `aes` argument should be contained inside of the `geom_` and will be explicitly defined.
+]
+
+.right-plot[
+&lt;img src="index_files/figure-html/map-vs-set-aes-SET-out-1.png" width="100%" /&gt;
+]
+
+---
+
+class: content-slide
+
+# *Mapping* Aesthetics vs. *Setting* Aesthetics
+
+.left-code[
+
+```r
+ggplot(data = penguins,
+       aes(x = flipper_length_mm,
+           y = bill_length_mm,
+*          color = "blue")) +
+  geom_point()
+```
+Consider what happens if we move `color = "blue"` into the `aes` function.
+
+This is not what you would expect. What is happening here?
+]
+
+.right-plot[
+&lt;img src="index_files/figure-html/map-vs-set-aes-SET-error-out-1.png" width="100%" /&gt;
+]
+
+---
+
+class: content-slide
+
+# *Mapping* Aesthetics vs. *Setting* Aesthetics
+
+.left-code[
+
+```r
+ggplot(data = penguins,
+       aes(x = flipper_length_mm,
+           y = bill_length_mm)) + 
+* geom_point(color = species)
+```
+Or consider what happens when we try to map `species` outside of the `aes` function. This is perhaps an even bigger issue.
+
+What's going on here?
+]
+
+.right-plot[
+
+```
+## Error in layer(data = data, mapping = mapping, stat = stat, geom = GeomPoint, : object 'species' not found
+```
+]
+
+---
+
+class: content-slide
+
+# Using multiple `geom`s 
+
+.left-code[
+Let's go back to the question of the relationship between bill length and flipper length. 
+
+It's great to see the relationship as points, but we might want to show a trend line as well. For this, we need an additional geometry.
+
+
+```r
+ggplot(data = penguins,
+       aes(x = flipper_length_mm,
+           y = bill_length_mm)) +
+  geom_point() +
+* geom_smooth()
+```
+]
+
+.right-plot[
+&lt;img src="index_files/figure-html/multiple-geoms-out-1.png" width="100%" /&gt;
+]
+
+---
+
+class: content-slide
+
+# Using multiple `geom`s 
+
+.left-code[
+Perhaps I'm curious about the different relationships that I might see across each of the species instead of seeing them in aggregate.
+
+
+```r
+ggplot(data = penguins,
+       aes(x = flipper_length_mm,
+           y = bill_length_mm,
+*          color = species)) +
+  geom_point() +
+  geom_smooth()
+```
+]
+
+.right-plot[
+&lt;img src="index_files/figure-html/multiple-geoms-color-out-1.png" width="100%" /&gt;
+]
+
+---
+
+class: content-slide
+
+# Statistical transformations
+
+.pull-left[
+Compared to `geom_point`, `geom_smooth` behaves much differently. 
+
+In the example of `geom_point`, our data was presented as is. An x-coordinate and a y-coordinate joined forces to become a point on the graph. Recall that this is because behind the scenes, `geom_point` utilizes a `stat = "identity"` argument.
+
+`geom_smooth` is different, though. There is not a 1:1 mapping of the values to the geometry. Rather, the .text-highlight[values have been transformed].
+
+This highlights the power of a **statistic**.
+]
+
+.pull-right[
+Check the vignette for `geom_smooth`. Notice its arguments:
+
+
+```r
+geom_smooth(
+  mapping = NULL,
+  data = NULL,
+* stat = "smooth",
+  position = "identity",
+  ...,
+  method = NULL,
+  formula = NULL,
+  se = TRUE,
+  na.rm = FALSE,
+  orientation = NA,
+  show.legend = NA,
+  inherit.aes = TRUE
+)
+```
+]
+
+---
+
+class: content-slide
+
+# Statistical transformations
+
+There are several other common geometries that utilize statistics other than "identity". For example...
+
+.pull-left[
+`geom_histogram` utilizes `stat = "bin"`
+
+
+```r
+ggplot(data = penguins,
+       aes(x = bill_length_mm)) +
+* geom_histogram()
+```
+
+&lt;img src="index_files/figure-html/unnamed-chunk-35-1.png" width="100%" /&gt;
+]
+
+.pull-right[
+`geom_bar` utilizes `stat = "count"`
+
+
+```r
+ggplot(data = penguins,
+       aes(x = island)) +
+* geom_bar()
+```
+
+&lt;img src="index_files/figure-html/unnamed-chunk-36-1.png" width="100%" /&gt;
+]
+
+---
+
+class: content-slide
+
+# Facets
+
+.left-code[
+One extremely powerful feature of `ggplot2` is the concept of **faceting**. The concept behind facets is that it allows us to make "small multiples" of our graphs. It gives us another way to explore relationships behind our data. Let's explore what that looks like:
+
+
+```r
+ggplot(data = penguins,
+       aes(x = flipper_length_mm,
+           y = bill_length_mm)) +
+  geom_point() +
+* facet_grid(~ species)
+```
+]
+
+.right-plot[
+&lt;img src="index_files/figure-html/facet-one-out-1.png" width="100%" /&gt;
+]
+
+---
+
+class: content-slide
+
+# Facets
+
+.left-code[
+We can, of course, do all of the same things we did previously, but with facets involved.
+
+Like adding in `color`:
+
+
+```r
+ggplot(data = penguins,
+       aes(x = flipper_length_mm,
+           y = bill_length_mm,
+*          color = species)) +
+  geom_point() +
+  facet_grid(~ species) 
+```
+]
+
+.right-plot[
+&lt;img src="index_files/figure-html/facet-color-out-1.png" width="100%" /&gt;
+]
+
+---
+
+class: content-slide
+
+# Facets
+
+.left-code[
+Or multiple geometries:
+
+
+```r
+ggplot(data = penguins,
+       aes(x = flipper_length_mm,
+           y = bill_length_mm,
+           color = species)) +
+  geom_point() +
+* geom_smooth() +
+  facet_grid(~ species)
+```
+]
+
+.right-plot[
+&lt;img src="index_files/figure-html/facet-mult-geoms-out-1.png" width="100%" /&gt;
+]
+
+---
+
+class: content-slide
+
+# Facets
+
+.left-code[
+We aren't limited to faceting by just one dimension. We can actually facet by two.
+
+
+```r
+ggplot(data = penguins,
+       aes(x = flipper_length_mm,
+           y = bill_length_mm,
+           color = species)) +
+  geom_point() +
+  geom_smooth() + 
+* facet_grid(island ~ species)
+```
+]
+
+.right-plot[
+&lt;img src="index_files/figure-html/facet-mult-facets-out-1.png" width="100%" /&gt;
+]
+
+---
+
+class: content-slide
+
+# Separate `aes` for separate `geom`s
+
+.left-code[
+I notice that when we build this graph it is extremely difficult to see the `geom_smooth` lines. Perhaps what I'd actually like to do is only map the color of the species to the points, but not to the lines of `geom_smooth`. I'd rather leave that as the default blue. We can easily do this as well.
+
+
+```r
+ggplot(data = penguins,
+       aes(x = flipper_length_mm,
+           y = bill_length_mm)) +
+* geom_point(aes(color = species)) +
+  geom_smooth() +
+  facet_grid(island ~ species)
+```
+]
+
+.right-plot[
+&lt;img src="index_files/figure-html/separate-aes-for-separate-geoms-out-1.png" width="100%" /&gt;
+]
+
+---
+
+class: content-slide
+
+# Improving plots with color
+
+.left-code[
+Actually - I hate the blue. It really clashes with the other colors. Let's change it to black. Easy enough.
+
+
+```r
+ggplot(data = penguins,
+       aes(x = flipper_length_mm,
+           y = bill_length_mm)) +
+  geom_point(aes(color = species)) + 
+* geom_smooth(color = "black") +
+  facet_grid(island ~ species)
+```
+]
+
+.right-plot[
+&lt;img src="index_files/figure-html/improve-plots-with-color-out-1.png" width="100%" /&gt;
+]
+
+---
+
+class: content-slide
+
+# Positioning
+
+.left-code[
+I notice that there are differences in how the species of penguins inhabit the different islands. I'm curious to know the actual values of the differences, though. We can use `geom_bar` to answer this question.
+
+
+```r
+ggplot(data = penguins,
+       aes(x = species,
+*          fill = island)) +
+* geom_bar()
+```
+]
+
+.right-plot[
+&lt;img src="index_files/figure-html/positioning-out-1.png" width="100%" /&gt;
+]
+
+---
+
+class: content-slide
+
+# Positioning
+
+.pull-left[
+You can now readily see the approximate counts of each species by the island that they inhabit. You'll notice the behavior of `geom_bar`. 
+
+Given no other prompting, the bars are positioned by **stacking** them.
+]
+
+.pull-right[
+Observe the arguments for `geom_bar`:
+
+
+```r
+geom_bar(
+  mapping = NULL,
+  data = NULL,
+  stat = "count",
+* position = "stack",
+  ...,
+  width = NULL,
+  na.rm = FALSE,
+  orientation = NA,
+  show.legend = NA,
+  inherit.aes = TRUE
+)
+```
+]
+
+---
+
+class: content-slide
+
+# Positioning
+
+.left-code[
+We can adjust the positioning. It may make our graph more compelling to `dodge` the position instead of `stack` the position.
+
+
+```r
+ggplot(data = penguins,
+       aes(x = species,
+           fill = island)) +
+* geom_bar(position = "dodge")
+```
+
+While not particularly attractive, this graph is actually more legible for our purposes. For example, I can very easily compare the size of the populations of penguin species by island.
+]
+
+.right-plot[
+&lt;img src="index_files/figure-html/position-bar-chart-dodge-out-1.png" width="100%" /&gt;
+]
+
+---
+
+class: content-slide
+
+# Common error
+
+Some of the most common errors you can make involve the placement of the `+` sign.
+
+Perhaps the most common...forgetting the `+` between different steps of your `ggplot2` object.
+
+
+```r
+ggplot(data = penguins,
+       aes(x = bill_length_mm,
+*          y = flipper_length_mm))
+* geom_point()
+```
+
+---
+
+class: content-slide
+
+# Common error
+
+Some of the most common errors you can make involve the placement of the `+` sign.
+
+And another frequent issue is putting the `+` at the beginning of the line.
+
+
+```r
+ggplot(data = penguins,
+       aes(x = bill_length_mm,
+           y = flipper_length_mm))
+* + geom_point()
+```
+
+---
+
+class: content-slide
+
+# ⁉️ How does this relate to EDA?
+
+&gt; EDA is an iterative cycle. You:
+
+&gt; 1. Generate questions about your data.
+
+&gt; 2. Search for answers by visualising, transforming, and modelling your data.
+
+&gt; 3. Use what you learn to refine your questions and/or generate new questions.
+
+Plotting is an integral part in the EDA process.
+
+Plots begin to tell the story of your data in order to allow you to interrogate your data further.
+
+"If a picture is worth a thousand words, a graph is worth a thousand pictures"
+
+---
+
+class: content-slide
+
+# What types of questions are we asking?
+
+Two key question types:
+
+* What type of variation occurs .text-highlight[within] my variables?
+* What type of covariation occurs .text-highlight[between] my variables?
+
+Things you may consider during your questioning:
+
+* Variation
+    * Bar charts for categorical variables (`geom_bar`)
+    * Histograms for continuous variables (`geom_histogram`)
+    * Boxplots for continuous variables (`geom_boxplot`)
+* Common values
+* Unusual values
+* Missing values
+* Covariation
+    * Bins for two categorical variables (`geom_point` or `geom_count` or `geom_tile`)
+    * Scatterplots for two continuous variables (`geom_point` or `geom_bin2d` or `geom_hex`)
+
+---
+
+class: content-slide
+
+# Try it yourself
+
+Explore the `mpg` dataset
+
+
+```r
+mpg
+```
+
+1. Make sure that the dataframe is included as part of your environment.
+
+2. Confirm the definitions of each field.
+
+3. Do some basic exploration of the dataframe using functions like `str`, `summary`, and `unique`.
+
+4. Brainstorm some questions that you might want to answer.
+
+5. Build `ggplot2` visualizations that would help you answer those questions. Consider the required data, aesthetics, and geometries to make that possible. Use the [cheatsheet](https://github.com/rstudio/cheatsheets/blob/master/data-visualization-2.1.pdf) to help guide you.
+
+---
+
+class: content-slide
+
+# For next week
+
+Complete your assignment by 5:59 pm. Submitted via GitHub following the same method that we used today.
+
+#### Textbook
+-   [Chapter 5 - Data transformation](https://r4ds.had.co.nz/transform.html)
+-   [Chapter 8 - Workflow: projects](https://r4ds.had.co.nz/workflow-projects.html)
+-   [Chapter 9 - Wrangle Introduction](https://r4ds.had.co.nz/wrangle-intro.html)
+-   [Chapter 10 - Tibbles](https://r4ds.had.co.nz/tibbles.html)
+
+#### Additional Readings
+-   [*Happy Git and GitHub for the useR*](https://happygitwithr.com/)
+    -   Chapters 15-19
+
+#### Supplemental Readings
+-   [A layered grammar of graphics](https://vita.had.co.nz/papers/layered-grammar.html)
+
+---
+
+class: content-slide
+
+# Course Project
+
+[Full directions](https://github.com/UD-PCS-Foundations-of-R-Fall-2021/final_project)
+
+The culminating project for Foundations of R will be the creation of an original analysis and data narrative. Your project will consist of several parts:
+
+-   Selection of a dataset and development of a business question
+-   Conducting an exploratory data analysis
+-   Creation of a final repository and markdown document
+
+
+
+---
+
+class: title-slide, middle
+layout: false
+
+# Foundations of R for Data Analysis
+
+### Week 02: Introduction to Exploratory Data Analysis
+
+Ryan Harrington&lt;br&gt;
+October 4, 2021&lt;br&gt;
+University of Delaware&lt;br&gt;
+College of Professional &amp; Continuing Studies
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+"slideNumberFormat": "%current%/%total%",
+"highlightStyle": "github",
+"highlightLines": true,
+"ratio": "16:9",
+"countIncrementalSlides": true
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+(function() {
+  "use strict"
+  // Replace <script> tags in slides area to make them executable
+  var scripts = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container script'
+  );
+  if (!scripts.length) return;
+  for (var i = 0; i < scripts.length; i++) {
+    var s = document.createElement('script');
+    var code = document.createTextNode(scripts[i].textContent);
+    s.appendChild(code);
+    var scriptAttrs = scripts[i].attributes;
+    for (var j = 0; j < scriptAttrs.length; j++) {
+      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
+    }
+    scripts[i].parentElement.replaceChild(s, scripts[i]);
+  }
+})();
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>
