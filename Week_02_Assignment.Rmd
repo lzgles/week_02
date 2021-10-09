@@ -12,7 +12,15 @@ knitr::opts_chunk$set(echo = TRUE)
 1.  Install the `nycflights13` package and load it into the namespace of your R session. Also, load the `tidyverse` package into the namespace of your R session. Attach the `airlines`, `airports`, `flights`, `weather`, and `planes` datasets
 
 ```{r}
-
+install.packages("nycflights13")
+library(nycflights13)
+install.packages("tidyverse")
+library("tidyverse")
+data(airlines)
+data(airports)
+data(flights)
+data(weather)
+data(planes)
 ```
 
 2.  We'll begin by exploring the `flights` dataset. Determine the following information about the dataset.
@@ -22,6 +30,9 @@ knitr::opts_chunk$set(echo = TRUE)
 -   Summary Statistics for each column
 
 ```{r}
+str(flights)
+dim(flights)
+summary(flights)
 
 ```
 
@@ -34,38 +45,72 @@ knitr::opts_chunk$set(echo = TRUE)
 Copy those definitions as a response here.
 
 ```{r}
+?flights
+#dep_delay, arr_delay
+#Departure and arrival delays, in minutes. Negative times represent early departures/arrivals.
+#hour, minute
+#Time of scheduled departure broken into hour and minutes.
+#origin, dest
+#Origin and destination. See airports for additional metadata.
 
 ```
 
 4.  Create a bar chart that demonstrates which origin occurs most frequently. Write a short interpretation of the bar graph.
 
+The bar graph shows how many flights originated at each of the three airports. The highest number of flights originated at EWR, while the lowest number originated at LGA. 
 ```{r}
-
+ggplot(data = flights, aes(x = origin)) +
+  geom_bar()
 ```
 
 5.  What is the distribution of flight departure times by hour? Describe the plot that you created.
 
     *Hint: Consider different geometries when creating the graph. Histograms are usually a good place to start when considering distributions, but bar plots can be helpful as well.*
+    
+The histogram shows the number of flights departing each hour. The fewest flights departed between 3-4 am (the 4th bin). 8-9am had the highest number of flight departures (the 9th bin). 
 
 ```{r}
+ggplot(data = flights) +
+  geom_histogram(aes(x = dep_time),
+                 bins = 24,
+                 color = "blue",
+                 fill = "skyblue2")
+
+
 
 ```
 
 6.  How does the distribution change when we consider the origin of the flight? Build upon your response in question 5. Describe the differences.
 
     *Hint: Experiment with faceting to find a view that is most helpful.*
+    
+The three airports show different flight distributions, with some similarities. All three had the fewest flights very early in the morning (before 5am) and very late at night (after 11pm). JFK has more flight departures in the morning, fewer around noon and early afternoon, and more in the late afternoon and evening, resulting in a bimodal distribution. LGA, in contrast has more similar numbers of departures throughout the day, although both LGA and EWR show a dip in departures around the 11 am hour.      
 
 ```{r}
-
+ggplot(data = flights) +
+  geom_histogram(aes(x = dep_time, fill = origin),
+                 bins = 24) +
+  scale_fill_brewer() +
+  theme_light() +
+  facet_grid(~ origin)
 ```
 
 7.  How does departure hour interact with departure delay? Utilize a [boxplot](https://towardsdatascience.com/understanding-boxplots-5e2df7bcbd51). Interpret the graph.
 
     *Hint: It can be helpful to adjust the portion of the graph that you observe in order to find patterns. Consider using `coord_cartesian` to help with this.*
 
-```{r}
+The graph shows the distribution of departure delays for each departure hour. The median departure delay for each hour is near 0, since most flights leave close to on-time. The 25th percentile for each hour, and the median for morning and late-night flights extends below 0 because more flights are leaving early at these times. Early morning flights have shorter delays, but longer delays become more common after noon. Delays over a half hour are more prevalent between 7 and 9 pm. Delays of over 90 minutes fall outside the typical range, as these values are outliers even during the evening hours when delays are more likely.    
 
+```{r}
+ggplot(data = flights) + 
+  geom_boxplot(aes(x = hour, y = dep_delay, group = hour)) + 
+  coord_cartesian(ylim = c(-30, 100))
 ```
+
+
+
+
+
 
 8.  Create your own question and answer it by using a graph. You may use any of the datasets loaded in the `nycflights13` package.
 
@@ -73,4 +118,19 @@ Copy those definitions as a response here.
 -   Create a graph that assists in answering the question.
 -   Write a short interpretation of the graph in order to answer your question.
 
+I wanted to examine departure delays and determine whether they were more affected by carrier or origin airport. Not all carriers have flights originating from all three airports (e.g, AS only originates at EWR, and F9 only originates at LGA), but I was most interested in the ones that do. Some of the data suggest that carrier has a bigger impact on departure delay than origin. EV, B6, and MQ have more flights delayed at least 10 minutes at all three airports, while AA, DL and US have fewer delays at all three. 9E is an exception, showing few delays at EWR, but more/longer delays at JFK. However, more analysis is needed to fully explore these trends. The boxplots do not take into account the number of flights per carrier, and a it is possible that a higher number of flights might result in a higher number of delays simply by chance. It would be worth examining the percentage of delayed flights per carrier and per origin.  
+
+```{r}
+ggplot(data = flights, aes(x = origin, y = dep_delay)) +
+  geom_boxplot() + 
+  coord_cartesian(ylim = c(-10, 30)) + 
+  facet_wrap(~carrier)
+ 
+```
+
+
+
+
 9.  You have now built a variety of graphics using the `ggplot2` system. Describe some of the advantages to the "grammar of graphics" approach to creating graphs.
+
+The grammar of graphics allows you to easily control and change various aspects of a graph to view your data in different ways, because your data, aesthetic, plot type, etc. are different layers that can be changed independently. By loading the dataset into the ggplot function, it means you do not have to work with the data as a spreadsheet like you would if you were making graphs in Excel. This allows you to work with larger datasets than Excel can handle. It allows you to change the plot type easily, so that you can make a scatterplot, boxplot, or histogram from the same dataset using the same process. The aesthetic mapping allows you to create visually attractive, informative graphs. 
